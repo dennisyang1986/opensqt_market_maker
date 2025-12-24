@@ -3,7 +3,7 @@
   
   # OpenSQT Market Maker
   
-  **毫秒级高频加密货币做市商系统 | Millisecond-level High-Frequency Crypto Market Maker**
+  **毫秒级高频加密货币做市商系统 | High-Frequency Crypto Market Maker**
 
   [![Go Version](https://img.shields.io/badge/Go-1.21%2B-blue.svg)](https://golang.org/dl/)
   [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
