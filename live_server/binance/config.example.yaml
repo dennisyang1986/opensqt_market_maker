@@ -1,0 +1,19 @@
+# Live server configuration (Binance/Bitget)
+# Fill in the exchange credentials you use.
+
+binance:
+  api_key: "YOUR_BITGET_API_KEY"
+  secret_key: "YOUR_BITGET_PASSPHRASE"
+
+bitget:
+  api_key: "YOUR_BITGET_API_KEY"
+  secret_key: "YOUR_BITGET_SECRET_KEY"
+  passphrase: "YOUR_BITGET_PASSPHRASE"
+
+trading:
+  # Example: ETHUSDT, BTCUSDT, SOLUSDT
+  symbol: "ETHUSDT"
+
+server:
+  # WebSocket live server port
+  live_port: 9798
