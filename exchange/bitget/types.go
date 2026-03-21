@@ -1,4 +1,4 @@
-package exchange
+package bitget
 
 import shared "opensqt/internal/exchangetypes"
 
@@ -12,8 +12,7 @@ const (
 type OrderType = shared.OrderType
 
 const (
-	OrderTypeLimit  = shared.OrderTypeLimit
-	OrderTypeMarket = shared.OrderTypeMarket
+	OrderTypeLimit = shared.OrderTypeLimit
 )
 
 type OrderStatus = shared.OrderStatus
@@ -31,16 +30,20 @@ type TimeInForce = shared.TimeInForce
 
 const (
 	TimeInForceGTC = shared.TimeInForceGTC
-	TimeInForceIOC = shared.TimeInForceIOC
-	TimeInForceFOK = shared.TimeInForceFOK
-	TimeInForceGTX = shared.TimeInForceGTX
 )
 
 type OrderRequest = shared.OrderRequest
 type Order = shared.Order
 type Position = shared.Position
-type Account = shared.Account
 type OrderUpdate = shared.OrderUpdate
 type OrderUpdateCallback = shared.OrderUpdateCallback
 type Candle = shared.Candle
-type CandleUpdateCallback = shared.CandleUpdateCallback
+
+type Account struct {
+	TotalWalletBalance float64
+	TotalMarginBalance float64
+	AvailableBalance   float64
+	Positions          []*Position
+	AccountLeverage    int
+	PosMode            string
+}
