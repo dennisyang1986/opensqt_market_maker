@@ -208,7 +208,7 @@ func main() {
 	}
 
 	// 初始化超级仓位管理器（设置价格锚点并创建初始槽位）
-	// 注意：必须在订单流启动后再初始化，避免错过买单成交推送
+	// 注意：必须在订单流启动后再初始化，避免错过入场单成交推送
 	if err := superPositionManager.Initialize(currentPrice, currentPriceStr); err != nil {
 		logger.Fatalf("❌ 初始化超级仓位管理器失败: %v", err)
 	}
@@ -242,14 +242,14 @@ func main() {
 		var lastTriggered bool // 记录上一次的风控状态，用于检测状态切换
 
 		for priceChange := range priceCh {
-			// === 风控检查：触发时撤销所有买单并暂停交易 ===
+			// === 风控检查：触发时撤销所有入场单并暂停交易 ===
 			isTriggered := riskMonitor.IsTriggered()
 
 			if isTriggered {
 				// 检测状态切换：从未触发 -> 触发（首次触发）
 				if !lastTriggered {
-					logger.Warn("🚨 [风控触发] 市场异常，正在撤销所有买单并暂停交易...")
-					superPositionManager.CancelAllBuyOrders() // 🔥 只撤销买单，保留卖单
+					logger.Warn("🚨 [风控触发] 市场异常，正在撤销所有入场单并暂停交易...")
+					superPositionManager.CancelAllBuyOrders() // 🔥 只撤销入场单，保留卖单
 					lastTriggered = true
 				}
 				// 风控触发期间跳过后续下单逻辑

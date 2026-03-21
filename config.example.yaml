@@ -40,9 +40,16 @@ exchanges:
     api_key: "YOUR_API_KEY"
     secret_key: "YOUR_API_SECRET"
     fee_rate: 0.0002
+  okx:
+  #OKX first version targets USDT perpetual swaps in long_short_mode
+    api_key: "YOUR_API_KEY"
+    secret_key: "YOUR_API_SECRET"
+    passphrase: "YOUR_PASSPHRASE"
+    fee_rate: 0.0002
 ####################################
 
 trading:
+  mode: "long"               # 交易模式: long / short
   symbol: "ETHUSDT"
   price_interval: 2         # 价格间隔（1美元）
   order_quantity: 30        # 每单购买金额（USDT/USDC）如 30 表示每单投入30U

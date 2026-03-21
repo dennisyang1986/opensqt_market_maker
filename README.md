@@ -133,6 +133,7 @@ opensqt_platform/
        fee_rate: 0.0002
 
    trading:
+     mode: "long"           # long / short
      symbol: "ETHUSDT"       # 交易对
      price_interval: 2       # 网格间距 (价格)
      order_quantity: 30      # 每格投入金额 (USDT)
