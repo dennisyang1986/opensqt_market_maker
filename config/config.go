@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -18,6 +19,7 @@ type Config struct {
 	Exchanges map[string]ExchangeConfig `yaml:"exchanges"`
 
 	Trading struct {
+		Mode                  string  `yaml:"mode"` // 交易模式: long / short
 		Symbol                string  `yaml:"symbol"`
 		PriceInterval         float64 `yaml:"price_interval"`
 		OrderQuantity         float64 `yaml:"order_quantity"`  // 每单购买金额（USDT/USDC）
@@ -123,6 +125,15 @@ func (c *Config) Validate() error {
 
 	if c.Trading.Symbol == "" {
 		return fmt.Errorf("交易对不能为空")
+	}
+	if strings.TrimSpace(c.Trading.Mode) == "" {
+		c.Trading.Mode = "long"
+	} else {
+		mode := strings.ToLower(strings.TrimSpace(c.Trading.Mode))
+		if mode != "long" && mode != "short" {
+			return fmt.Errorf("trading.mode 仅支持 long 或 short")
+		}
+		c.Trading.Mode = mode
 	}
 	if c.Trading.OrderQuantity <= 0 {
 		return fmt.Errorf("订单金额必须大于0")

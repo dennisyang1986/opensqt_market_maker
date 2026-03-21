@@ -14,18 +14,6 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// Candle K线数据
-type Candle struct {
-	Symbol    string
-	Open      float64
-	High      float64
-	Low       float64
-	Close     float64
-	Volume    float64
-	Timestamp int64
-	IsClosed  bool // K线是否完结
-}
-
 // KlineWebSocketManager Bitget K线WebSocket管理器
 type KlineWebSocketManager struct {
 	conn           *websocket.Conn

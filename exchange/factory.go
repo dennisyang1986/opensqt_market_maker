@@ -6,6 +6,7 @@ import (
 	"opensqt/exchange/binance"
 	"opensqt/exchange/bitget"
 	"opensqt/exchange/gate"
+	"opensqt/exchange/okx"
 )
 
 // NewExchange 创建交易所实例
@@ -60,6 +61,22 @@ func NewExchange(cfg *config.Config) (IExchange, error) {
 			return nil, err
 		}
 		return &gateWrapper{adapter: adapter}, nil
+
+	case "okx":
+		exchangeCfg, exists := cfg.Exchanges["okx"]
+		if !exists {
+			return nil, fmt.Errorf("okx configuration not found")
+		}
+		cfgMap := map[string]string{
+			"api_key":    exchangeCfg.APIKey,
+			"secret_key": exchangeCfg.SecretKey,
+			"passphrase": exchangeCfg.Passphrase,
+		}
+		adapter, err := okx.NewOKXAdapter(cfgMap, cfg.Trading.Symbol)
+		if err != nil {
+			return nil, err
+		}
+		return &okxWrapper{adapter: adapter}, nil
 
 	case "bybit":
 		return nil, fmt.Errorf("bybit 尚未实现")

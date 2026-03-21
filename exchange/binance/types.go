@@ -1,4 +1,4 @@
-package exchange
+package binance
 
 import shared "opensqt/internal/exchangetypes"
 
@@ -31,8 +31,6 @@ type TimeInForce = shared.TimeInForce
 
 const (
 	TimeInForceGTC = shared.TimeInForceGTC
-	TimeInForceIOC = shared.TimeInForceIOC
-	TimeInForceFOK = shared.TimeInForceFOK
 	TimeInForceGTX = shared.TimeInForceGTX
 )
 
@@ -43,4 +41,3 @@ type Account = shared.Account
 type OrderUpdate = shared.OrderUpdate
 type OrderUpdateCallback = shared.OrderUpdateCallback
 type Candle = shared.Candle
-type CandleUpdateCallback = shared.CandleUpdateCallback
